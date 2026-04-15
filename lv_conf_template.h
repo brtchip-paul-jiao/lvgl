@@ -428,6 +428,9 @@
     #define LV_DRAW_EVE_WRITE_BUFFER_SIZE 2048
 #endif
 
+/* Use EVE BT820 GPU through EVE HAL. */
+#define LV_USE_DRAW_EVE5 0
+
 /* VRAM buffer residency support for hardware draw units. */
 #define LV_USE_DRAW_VRAM 0
 
@@ -1460,6 +1463,9 @@
 #if LV_USE_QNX
     #define LV_QNX_BUF_COUNT        1    /**< 1 or 2 */
 #endif
+
+/** EVE5 display output */
+#define LV_USE_EVE5 0
 
 /** Enable or disable for external data and destructor function */
 #define LV_USE_EXT_DATA   0
