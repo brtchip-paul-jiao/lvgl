@@ -43,7 +43,7 @@ extern "C" {
 #if LV_USE_EVE5 && LV_USE_FS_EVE5_FLASH
 
 #include "../../../display/lv_display.h"
-#include "Esd_GpuAlloc.h"
+#include "EVE_GpuAlloc.h"
 
 /*********************
  *      DEFINES
@@ -106,7 +106,7 @@ bool lv_eve5_flash_is_path(const char * path);
  * The flash address must be 64-byte aligned.
  *
  * The caller owns the returned GPU handle and must free it via
- * Esd_GpuAlloc_Free(lv_eve5_flash_get_allocator(), handle).
+ * EVE_GpuAlloc_Free(lv_eve5_flash_get_allocator(), handle).
  *
  * @param path            Full path including drive letter (e.g., "F:/4096")
  * @param handle          Pointer to receive the GPU handle
@@ -117,7 +117,7 @@ bool lv_eve5_flash_is_path(const char * path);
  * @param palette_offset  Pointer to receive palette LUT offset from handle base (GA_INVALID if non-paletted)
  * @return                true on success, false on failure
  */
-bool lv_eve5_flash_load_image(const char * path, Esd_GpuHandle *handle,
+bool lv_eve5_flash_load_image(const char * path, EVE_GpuHandle *handle,
                               uint32_t * width, uint32_t * height, uint32_t * format,
                               uint32_t * image_offset, uint32_t * palette_offset);
 
@@ -127,7 +127,7 @@ bool lv_eve5_flash_load_image(const char * path, Esd_GpuHandle *handle,
  *
  * @return          Pointer to the GPU allocator, or NULL if not initialized
  */
-Esd_GpuAlloc * lv_eve5_flash_get_allocator(void);
+EVE_GpuAlloc * lv_eve5_flash_get_allocator(void);
 
 /**********************
  *      MACROS

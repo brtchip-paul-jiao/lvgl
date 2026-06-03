@@ -38,7 +38,7 @@ extern "C" {
 #if LV_USE_EVE5 && LV_USE_FS_EVE5_SDCARD
 
 #include "../../../display/lv_display.h"
-#include "Esd_GpuAlloc.h"
+#include "EVE_GpuAlloc.h"
 
 /*********************
  *      DEFINES
@@ -95,9 +95,9 @@ void lv_fs_eve5_sdcard_deinit(void);
  *
  * This provides a zero-copy path for loading textures from SD card directly
  * into GPU memory. After calling this function:
- * - The caller owns the GPU handle and must free it via Esd_GpuAlloc_Free()
+ * - The caller owns the GPU handle and must free it via EVE_GpuAlloc_Free()
  * - The file handle should be closed (reads will fail)
- * - Use Esd_GpuAlloc_Get(alloc, handle) to get the current RAM_G address
+ * - Use EVE_GpuAlloc_Get(alloc, handle) to get the current RAM_G address
  *
  * @param file_p    File handle returned by lv_fs_open()
  * @param alloc     Pointer to receive the GPU allocator (needed for address lookup and freeing)
@@ -105,7 +105,7 @@ void lv_fs_eve5_sdcard_deinit(void);
  * @param size      Pointer to receive the file size in bytes
  * @return          true if successful, false if already stolen
  */
-bool lv_eve5_sdcard_steal_ramg(void * file_p, Esd_GpuAlloc ** alloc, Esd_GpuHandle *handle, uint32_t * size);
+bool lv_eve5_sdcard_steal_ramg(void * file_p, EVE_GpuAlloc ** alloc, EVE_GpuHandle *handle, uint32_t * size);
 
 /**
  * Check if a path is for the EVE5 SD card filesystem.
@@ -126,7 +126,7 @@ bool lv_eve5_sdcard_is_path(const char * path);
  * 4. Free temporary allocation
  *
  * The caller owns the returned GPU handle and must free it via
- * Esd_GpuAlloc_Free(lv_eve5_sdcard_get_allocator(), handle).
+ * EVE_GpuAlloc_Free(lv_eve5_sdcard_get_allocator(), handle).
  *
  * @param path            Full path including drive letter (e.g., "S:/image.jpg")
  * @param handle          Pointer to receive the GPU handle
@@ -137,7 +137,7 @@ bool lv_eve5_sdcard_is_path(const char * path);
  * @param palette_offset  Pointer to receive palette LUT offset from handle base (GA_INVALID if non-paletted)
  * @return                true on success, false on failure
  */
-bool lv_eve5_sdcard_load_image(const char * path, Esd_GpuHandle *handle,
+bool lv_eve5_sdcard_load_image(const char * path, EVE_GpuHandle *handle,
                                uint32_t * width, uint32_t * height, uint32_t * format,
                                uint32_t * image_offset, uint32_t * palette_offset);
 
@@ -147,7 +147,7 @@ bool lv_eve5_sdcard_load_image(const char * path, Esd_GpuHandle *handle,
  *
  * @return          Pointer to the GPU allocator, or NULL if not initialized
  */
-Esd_GpuAlloc * lv_eve5_sdcard_get_allocator(void);
+EVE_GpuAlloc * lv_eve5_sdcard_get_allocator(void);
 
 /**
  * Query JPEG/PNG image dimensions on the SD card without loading the file.

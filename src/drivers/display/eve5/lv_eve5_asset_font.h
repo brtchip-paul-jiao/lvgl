@@ -41,7 +41,7 @@ extern "C" {
 #include "../../../font/lv_font.h"
 #include "../../../display/lv_display.h"
 #include "EVE_Hal.h"
-#include "Esd_GpuAlloc.h"
+#include "EVE_GpuAlloc.h"
 
 /**********************
  *      DEFINES
